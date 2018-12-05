@@ -1,9 +1,4 @@
-$(document).ready(function () {
-
-    $("#btnReset").hide();
-    $("correctGif").hide();
-    $("wrongGif").hide();
-
+$(document).ready(function() {
 
     // var choice1 = document.getElementById("#first");
     // var choice2 = document.getElementById("#second");
@@ -11,7 +6,7 @@ $(document).ready(function () {
     // var choice4 = document.getElementById("#fourth");
     var playerChoice;
     var question;
-    var answer;
+    var answer = 0;
     // var theQuestions = document.getElementById("#question");
     // var gameTimer = document.getElementById("#timer");
     var numCorrect = 0;
@@ -21,56 +16,60 @@ $(document).ready(function () {
     gameTimer = 10;
     var numQuestions;
     var placeholder;
+    var choice1 = "";
+    var choice2 = "";
+    var choice3 = "";
+    var choice4 = "";
     usedQuestions = [];
-    theQuestions = [
+    theChoices = [
         {
-            question = "What kind of pizza did Sethical try to order?",
-            choice1 = "Hawaiian Pizza",
-            choice2 = "Boneless Pizza",
-            choice3 = "White Pizza",
-            choice4 = "No Dough Pizza",
+            choice1: "Hawaiian Pizza",
+            choice2: "Boneless Pizza",
+            choice3: "White Pizza",
+            choice4: "No Dough Pizza",
             // choices: ["Hawaiian Pizza", "Boneless Pizza", "White Pizza", "No Dough Pizza"],
-            answer = choice2
+            answer: 1
         },
         {
-            question = "Who didn't let the gorilla into the ballet?",
-            choice1 = "The Gorilla's Keeper",
-            choice2 = "The Loins",
-            choice3 = "That One Guy From Allstate",
-            choice4 = "Just Whoever Was In Charge Of That Decision",
+            choice1: "The Gorilla's Keeper",
+            choice2: "The Loins",
+            choice3: "That One Guy From Allstate",
+            choice4: "Just Whoever Was In Charge Of That Decision",
             // choices: ["The Gorilla's Keeper", "The Lions", "That One Guy From Allstate", "Just The People Who Are In Charge Of That Decision"],
-            answer = choice4
+            answer: 3
         },
         {
-            question = "Finish This _______",
-            choice1 = "Sentence",
-            choice2 = "Dinner",
-            choice3 = "Book",
-            choice4 = "Please",
+            choice1: "Sentence",
+            choice2: "Dinner",
+            choice3: "Book",
+            choice4: "Please",
             // choices: ["Sentence", "Dinner", "Book", "Please"],
-            answer = choice2
+            answer: 1
         },
         {
-            question = "Which of the following life forms contain an immortal species?",
-            choice1 = "Jellyfish",
-            choice2 = "Sheep",
-            choice3 = "Dragonflies",
-            choice4 = "Shrimp",
+            choice1: "Jellyfish",
+            choice2: "Sheep",
+            choice3: "Dragonflies",
+            choice4: "Shrimp",
             // choices: ["Jellyfish", "Sheep", "Dragonflies", "Shrimp"],
-            answer = choice1
+            answer: 0
         }
     ];
-
-    //#8ac13e lime green background color
+    var questionsArr = ["What kind of pizza did Sethical try to order?", "Who didn't let the gorilla into the ballet?", "Finish This _______", "Which of the following life forms contain an immortal species?"];
 
     function stopGame() {
         timerOn = false;
         clearInterval(placeholder);
-    }
+    };
+
+    console.log($("#question").html(theQuestions[0][0]));
 
     function showQuestion() {
         var i = Math.floor(Math.random() * 4);
-        $("#question").html(theQuestions[i].question);
+        $("#question").html(questionArr[i]);
+        if(i = 0) {
+            answer = 
+        }
     }
 
     $("#first").click(function() {
@@ -111,16 +110,15 @@ $(document).ready(function () {
 
         $("#btnStart").on("click", function() {
             $("#btnStart").hide();
-            showQuestions();
+            $("#correctGif").hide();
+            $("#wrongGif").hide();
+            showQuestion();
             runTimer();
+            console.log($("#question").html(theQuestions[0][0]));
             for (var i = 0; i < questions.length; i++) {
               qholder.push(questions[i]);
             }
           });
-
-    $("#btnStart").on("click", function () {
-
-    });
 
     function decrement() {
         $("#timer").html("<h4>Time remaining: <strong>" + gameTimer + " sec.</strong></h4>");
@@ -135,8 +133,7 @@ $(document).ready(function () {
                 );
                 $("#timer").hide();
                 stop();
-                $(".playerChoice").hide();
-                $("#timeup").show();
+
                 finish();
               }, 3000);
             }
